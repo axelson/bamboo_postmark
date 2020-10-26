@@ -20,7 +20,7 @@ defmodule Bamboo.PostmarkAdapter do
   @send_email_template_path "email/withTemplate"
 
   defmodule ApiError do
-    defexception [:message]
+    defexception [:message, :params, :response]
 
     def exception(%{message: message}) do
       %ApiError{message: message}
@@ -47,7 +47,7 @@ defmodule Bamboo.PostmarkAdapter do
         POSTMARK_API_KEY
       )
       """
-      %ApiError{message: message}
+      %ApiError{message: message, params: params, response: response}
     end
   end
 
